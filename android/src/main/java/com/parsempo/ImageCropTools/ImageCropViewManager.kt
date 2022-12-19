@@ -73,7 +73,8 @@ class ImageCropViewManager: SimpleViewManager<CropImageView>() {
                     extension = "png"
                     format = Bitmap.CompressFormat.PNG
                 }
-                val path = File(root.context.cacheDir, "${UUID.randomUUID()}.$extension").toURI().toString()
+                val fileName = args?.getInt(1) ?: ""
+                val path = File(root.context.cacheDir, "${fileName}${UUID.randomUUID()}.$extension").toURI().toString()
                 val quality = args?.getInt(1) ?: 100
 
                 root.croppedImageAsync(format, quality, customOutputUri = Uri.parse(path))
